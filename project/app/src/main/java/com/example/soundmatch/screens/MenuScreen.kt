@@ -47,7 +47,6 @@ fun MenuScreen(onNavigateToQuiz: () -> Unit) {
                 .fillMaxSize()
                 .padding(horizontal = 24.dp, vertical = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            // verticalArrangement = Arrangement.SpaceAround
         ) {
 
             Spacer(modifier = Modifier.height(60.dp))
@@ -182,7 +181,6 @@ fun MenuButton(text: String, onClick: () -> Unit) {
 @Composable
 fun DefaultPreview() {
     SoundMatchTheme {
-        // Chamamos a MenuScreen, passando uma função vazia para o clique
         MenuScreen(onNavigateToQuiz = {})
     }
 }

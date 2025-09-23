@@ -22,10 +22,10 @@ import com.example.soundmatch.OrangeColor
 import com.example.soundmatch.R
 import com.example.soundmatch.ui.theme.PressStart2PFamily
 
-// Composable principal da tela de Quiz
+// main composable
 @Composable
 fun QuizScreen() {
-    // Por enquanto, vamos usar dados de exemplo. Depois, isso virá do seu ML.
+    // data example, after ML
     val questionText = "Qual destes sons te atrai mais em uma música?"
     val answers = listOf(
         "Guitarras elétricas com distorção e uma bateria poderosa.",
@@ -73,7 +73,7 @@ fun QuizScreen() {
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Indicador de Pergunta
+            // question indicator
             Text(
                 text = "--- PERGUNTA 1 DE 10 ---",
                 style = MaterialTheme.typography.bodyLarge,
@@ -83,7 +83,7 @@ fun QuizScreen() {
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Gera os botões de resposta automaticamente
+            // gennerate buttons and the answers
             answers.forEachIndexed { index, answerText ->
                 val option = 'A' + index // 'A', 'B', 'C', ...
                 AnswerButton(option = option, text = answerText, onClick = { /* Lógica da resposta */ })
@@ -93,7 +93,7 @@ fun QuizScreen() {
     }
 }
 
-// Composable para um botão de resposta customizado
+// composable to the button and customizable answer
 @Composable
 fun AnswerButton(option: Char, text: String, onClick: () -> Unit) {
     Button(
@@ -102,7 +102,7 @@ fun AnswerButton(option: Char, text: String, onClick: () -> Unit) {
         colors = ButtonDefaults.buttonColors(containerColor = OrangeColor),
         modifier = Modifier
             .fillMaxWidth()
-            .defaultMinSize(minHeight = 80.dp), // Altura mínima
+            .defaultMinSize(minHeight = 80.dp),
         border = BorderStroke(4.dp, DarkBrownColor)
     ) {
         Row(
@@ -121,7 +121,7 @@ fun AnswerButton(option: Char, text: String, onClick: () -> Unit) {
             Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = text,
-                style = MaterialTheme.typography.bodyLarge, // Fonte Silkscreen para a resposta
+                style = MaterialTheme.typography.bodyLarge,
                 color = DarkBrownColor,
                 fontSize = 18.sp,
                 lineHeight = 22.sp,
