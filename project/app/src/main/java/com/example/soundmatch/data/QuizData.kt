@@ -21,13 +21,13 @@ val allQuestions = listOf(
     ),
     Question(
         id = 2,
-        questionText = "Pense no seu jeito ideal de curtir música. Qual destes cenários te descreve melhor?",
+        questionText = "Qual destes cenários você mais se identifica?",
         answers = listOf(
-            "Em um grande show ou festival, no meio da multidão, sentindo a energia do ambiente.",
-            "Em uma festa ou balada, onde o importante é a batida te fazer mover.",
-            "Em um barzinho ou sarau, com música ao vivo, em um clima mais social e descontraído.",
+            "Um grande show ou festival, no meio da multidão, sentindo a energia do ambiente.",
+            "Uma festa ou balada, onde o importante é a batida te fazer mover.",
+            "Um barzinho ou sarau, com música ao vivo, em um clima mais social e descontraído.",
             "Sozinho(a) em casa, com bons fones de ouvido, para uma imersão total e sem distrações.",
-            "Como um som de fundo agradável para me concentrar, trabalhar ou relaxar."
+            "Um som de fundo agradável para me concentrar, trabalhar ou relaxar."
         )
     ),
     Question(
@@ -43,7 +43,7 @@ val allQuestions = listOf(
     ),
     Question(
         id = 4,
-        questionText = "Imagine que você está descobrindo uma música nova que te vicia. Qual é a principal característica dela?",
+        questionText = "Música nova: o que te chama mais atenção?",
         answers = listOf(
             "A energia contagiante, que me faz querer pular e cantar junto.",
             "A batida (o \"beat\"), forte e marcante, que me faz balançar a cabeça.",

@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.soundmatch.data.allQuestions
 import com.example.soundmatch.screens.MenuScreen
 import com.example.soundmatch.screens.QuizScreen
 import com.example.soundmatch.ui.theme.SoundMatchTheme
@@ -28,20 +29,39 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun AppNavigation() {
-    val navController = rememberNavController() // controller
+    val navController = rememberNavController()
 
-    // container
     NavHost(navController = navController, startDestination = "menu") {
-        // menu table
         composable("menu") {
             MenuScreen(onNavigateToQuiz = {
-                navController.navigate("quiz")
+                navController.navigate("quiz/1")
             })
         }
 
-        // quiz screen
-        composable("quiz") {
-            QuizScreen()
+
+        composable("quiz/{questionId}") { backStackEntry ->
+            val questionId = backStackEntry.arguments?.getString("questionId")?.toIntOrNull() ?: 1
+
+            val question = allQuestions.find { it.id == questionId }
+
+            if (question != null) {
+                val nextQuestionId = questionId + 1
+
+                QuizScreen(
+                    question = question,
+                    questionNumber = question.id,
+                    totalQuestions = allQuestions.size,
+                    onAnswerSelected = { answerIndex ->
+
+                        if (nextQuestionId > allQuestions.size) {
+                        } else {
+                            navController.navigate("quiz/$nextQuestionId")
+                        }
+                    }
+                )
+            }
         }
+
+        // composable("results") { ResultsScreen() }
     }
 }
