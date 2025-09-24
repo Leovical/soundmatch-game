@@ -46,7 +46,6 @@ fun CreditsScreen(onNavigateBack: () -> Unit) {
 
             Spacer(modifier = Modifier.height(60.dp))
 
-            // Título "CRÉDITOS"
             Box {
                 Text(
                     text = "CRÉDITOS",
@@ -67,15 +66,12 @@ fun CreditsScreen(onNavigateBack: () -> Unit) {
 
             Spacer(modifier = Modifier.height(80.dp))
 
-            // Seção de informações dos créditos
             CreditEntry("Desenvolvimento do app:", "Leonardo Victor")
             Spacer(modifier = Modifier.height(40.dp))
             CreditEntry("Documentação e Machine Learning:", "João Paulo Brito")
 
-            // Este Spacer empurra o conteúdo abaixo para o fundo
             Spacer(modifier = Modifier.weight(1f))
 
-            // Botão para voltar ao menu
             MenuButton(text = "VOLTAR", onClick = onNavigateBack)
 
             Spacer(modifier = Modifier.height(32.dp))

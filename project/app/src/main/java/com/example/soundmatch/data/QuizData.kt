@@ -3,7 +3,8 @@ package com.example.soundmatch.data
 data class Question(
     val id: Int,
     val questionText: String,
-    val answers: List<String>
+    val answers: List<String>,
+    val isBaseQuestion: Boolean = false
 )
 
 
@@ -17,7 +18,8 @@ val allQuestions = listOf(
             "A virtuosidade de instrumentos acústicos como piano, violino ou saxofone.",
             "A voz humana clara e em primeiro plano, contando uma história.",
             "Prefiro que os instrumentos criem uma \"paisagem sonora\", sem necessariamente um elemento principal."
-        )
+        ),
+        isBaseQuestion = true
     ),
     Question(
         id = 2,
@@ -28,7 +30,8 @@ val allQuestions = listOf(
             "Um barzinho ou sarau, com música ao vivo, em um clima mais social e descontraído.",
             "Sozinho(a) em casa, com bons fones de ouvido, para uma imersão total e sem distrações.",
             "Um som de fundo agradável para me concentrar, trabalhar ou relaxar."
-        )
+        ),
+        isBaseQuestion = true
     ),
     Question(
         id = 3,
@@ -39,7 +42,8 @@ val allQuestions = listOf(
             "Apreciar a técnica, a complexidade e o talento dos músicos.",
             "Conectar-se com sentimentos profundos, nostalgia e poesia.",
             "Relaxar a mente e fugir do estresse do dia a dia."
-        )
+        ),
+        isBaseQuestion = true
     ),
     Question(
         id = 4,
@@ -50,7 +54,8 @@ val allQuestions = listOf(
             "A melodia complexa e cheia de nuances, com vários instrumentos trabalhando juntos.",
             "A letra poética e a simplicidade de um violão ou piano que tocam a alma.",
             "A atmosfera que ela cria, sendo calma e relaxante, perfeita para se concentrar."
-        )
+        ),
+        isBaseQuestion = true
     ),
     Question(
         id = 5,
@@ -61,7 +66,8 @@ val allQuestions = listOf(
             "Ritmo falado, com rimas inteligentes e um bom \"flow\".",
             "Suaves e sussurrados, quase como uma conversa ao pé do ouvido.",
             "Prefiro músicas instrumentais, onde os instrumentos \"falam\" por si."
-        )
+        ),
+        isBaseQuestion = true
     ),
     Question(
         id = 6,
@@ -72,7 +78,8 @@ val allQuestions = listOf(
             "Solos instrumentais longos e tecnicamente impressionantes.",
             "A harmonia perfeita entre a letra e a melodia.",
             "A simplicidade genial, que prova que \"menos é mais\"."
-        )
+        ),
+        isBaseQuestion = true
     ),
     Question(
         id = 7,
@@ -81,7 +88,8 @@ val allQuestions = listOf(
             "Uma banda com guitarras, baixo e bateria tocando em perfeita sincronia.",
             "Batidas eletrônicas, sintetizadores e um grave que faz tudo tremer.",
             "A velocidade e o peso dos instrumentos, de forma intensa e avassaladora."
-        )
+        ),
+        isBaseQuestion = false
     ),
     Question(
         id = 8,
@@ -91,7 +99,8 @@ val allQuestions = listOf(
             "Vocais mais agressivos, rasgados ou até mesmo gritados.",
             "Pouco ou nenhum vocal. O foco deve ser na batida e nos instrumentos.",
             "Vocais processados com efeitos, como parte da paisagem sonora."
-        )
+        ),
+        isBaseQuestion = false
     ),
     Question(
         id = 9,
@@ -100,7 +109,8 @@ val allQuestions = listOf(
             "O riff de guitarra, aquela melodia que fica na sua cabeça.",
             "A construção de uma batida constante que te hipnotiza e te faz dançar ou pular do chão.",
             "A potência e a complexidade da bateria e do baixo."
-        )
+        ),
+        isBaseQuestion = false
     ),
     Question(
         id = 10,
@@ -109,7 +119,8 @@ val allQuestions = listOf(
             "Cantar junto com os amigos, em uma viagem ou em um bar de rock.",
             "Extravasar toda a sua energia, seja num show ou sozinho em casa.",
             "Uma festa que dura a noite inteira."
-        )
+        ),
+        isBaseQuestion = false
     ),
     Question(
         id = 11,
@@ -117,7 +128,8 @@ val allQuestions = listOf(
         answers = listOf(
             "A mensagem da letra e a interpretação do(a) cantor(a)",
             "A qualidade e a técnica dos instrumentistas, a música falando por si só"
-        )
+        ),
+        isBaseQuestion = false
     ),
     Question(
         id = 12,
@@ -126,7 +138,8 @@ val allQuestions = listOf(
             "Histórias de amor, romance, festa e cotidiano.",
             "Poesias, críticas sociais ou reflexões mais profundas sobre a vida.",
             "Mensagens de fé, esperança, louvor e gratidão."
-        )
+        ),
+        isBaseQuestion = false
     ),
     Question(
         id = 13,
@@ -136,7 +149,8 @@ val allQuestions = listOf(
             "O som do violão, da sanfona e do piano, de forma mais acústica e emotiva.",
             "O som do violão, da sanfona e do piano, de forma mais acústica e emotiva.",
             "Uma banda completa, com guitarras, teclado e bateria, em formato de \"hino\"."
-        )
+        ),
+        isBaseQuestion = false
     ),
     Question(
         id = 14,
@@ -146,7 +160,8 @@ val allQuestions = listOf(
             "Conectado(a) com as suas emoções, seja alegria, sofrimento ou saudade.",
             "Inspirado(a) e com a fé fortalecida.",
             "Orgulhoso(a) da cultura e da riqueza musical brasileira."
-        )
+        ),
+        isBaseQuestion = false
     ),
     Question(
         id = 15,
@@ -154,7 +169,8 @@ val allQuestions = listOf(
         answers = listOf(
             "Uma grande orquestra sinfônica, com dezenas de músicos em harmonia.",
             "Uma banda menor (um trio ou quarteto), onde cada músico tem seu momento de brilhar e improvisar."
-        )
+        ),
+        isBaseQuestion = false
     ),
     Question(
         id = 16,
@@ -162,7 +178,8 @@ val allQuestions = listOf(
         answers = listOf(
             "Grandiosa, estruturada em movimentos, com temas que se desenvolvem ao longo de minutos.",
             "Livre, com um tema principal que serve de base para a criatividade e o improviso espontâneo."
-        )
+        ),
+        isBaseQuestion = false
     ),
     Question(
         id = 17,
@@ -170,6 +187,7 @@ val allQuestions = listOf(
         answers = listOf(
             "Se concentrar, estudar ou apreciar em silêncio, como em uma sala de concerto.",
             "Relaxar em um ambiente sofisticado, como um bar ou um clube, admirando o talento dos músicos."
-        )
+        ),
+        isBaseQuestion = false
     )
 )

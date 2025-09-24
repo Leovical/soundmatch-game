@@ -17,9 +17,8 @@ import com.example.soundmatch.DarkBrownColor
 import com.example.soundmatch.OrangeColor
 import com.example.soundmatch.R
 import com.example.soundmatch.data.ResultData
-import com.example.soundmatch.data.allResults
 import com.example.soundmatch.ui.theme.PressStart2PFamily
-import com.example.soundmatch.ui.theme.SoundMatchTheme
+
 
 @Composable
 fun ResultScreen(result: ResultData, onRedoQuiz: () -> Unit) {
