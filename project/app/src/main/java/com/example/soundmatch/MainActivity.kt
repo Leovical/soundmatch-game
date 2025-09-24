@@ -14,6 +14,7 @@ import com.example.soundmatch.screens.MenuScreen
 import com.example.soundmatch.screens.QuizScreen
 import com.example.soundmatch.screens.ResultScreen
 import com.example.soundmatch.ui.theme.SoundMatchTheme
+import com.example.soundmatch.screens.CreditsScreen
 
 val OrangeColor = Color(0xFFB45329)
 val DarkBrownColor = Color(0xFF2C170B)
@@ -35,28 +36,32 @@ class MainActivity : ComponentActivity() {
 fun AppNavigation() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "results/eletronica") {
+    NavHost(navController = navController, startDestination = "menu") {
         // Rota do Menu (continua igual)
         composable("menu") {
             MenuScreen(onNavigateToQuiz = {
                 navController.navigate("quiz/1")
+                }, onNavigateToCredits = { navController.navigate("credits")
+            }
+            )
+        }
+
+        composable("credits") {
+            CreditsScreen(onNavigateBack = {
+                navController.popBackStack()
             })
         }
 
-        // Rota do Quiz (com a correção)
+        // quiz route (correction)
         composable("quiz/{questionId}") { backStackEntry ->
-            // Pegamos o ID da pergunta da rota
+
             val questionId = backStackEntry.arguments?.getString("questionId")?.toIntOrNull() ?: 1
 
-            // Encontramos a pergunta correspondente na nossa lista
             val question = allQuestions.find { it.id == questionId }
 
-            // Verificamos se a pergunta foi encontrada antes de usá-la
             if (question != null) {
                 val nextQuestionId = questionId + 1
 
-                // AQUI ESTÁ A CORREÇÃO:
-                // Passamos todos os parâmetros que a QuizScreen espera receber.
                 QuizScreen(
                     question = question,
                     questionNumber = question.id,
