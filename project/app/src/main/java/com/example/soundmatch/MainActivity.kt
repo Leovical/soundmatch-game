@@ -8,9 +8,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.soundmatch.data.allQuestions
+import com.example.soundmatch.data.allResults
 import com.example.soundmatch.screens.MenuScreen
 import com.example.soundmatch.screens.QuizScreen
+import com.example.soundmatch.screens.ResultScreen
 import com.example.soundmatch.ui.theme.SoundMatchTheme
+import com.example.soundmatch.screens.CreditsScreen
 
 val OrangeColor = Color(0xFFB45329)
 val DarkBrownColor = Color(0xFF2C170B)
@@ -26,22 +30,74 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// Dentro de MainActivity.kt
+
 @Composable
 fun AppNavigation() {
-    val navController = rememberNavController() // controller
+    val navController = rememberNavController()
 
-    // container
     NavHost(navController = navController, startDestination = "menu") {
-        // menu table
+        // Rota do Menu (continua igual)
         composable("menu") {
             MenuScreen(onNavigateToQuiz = {
-                navController.navigate("quiz")
+                navController.navigate("quiz/1")
+                }, onNavigateToCredits = { navController.navigate("credits")
+            }
+            )
+        }
+
+        composable("credits") {
+            CreditsScreen(onNavigateBack = {
+                navController.popBackStack()
             })
         }
 
-        // quiz screen
-        composable("quiz") {
-            QuizScreen()
+        // quiz route (correction)
+        composable("quiz/{questionId}") { backStackEntry ->
+
+            val questionId = backStackEntry.arguments?.getString("questionId")?.toIntOrNull() ?: 1
+
+            val question = allQuestions.find { it.id == questionId }
+
+            if (question != null) {
+                val nextQuestionId = questionId + 1
+
+                QuizScreen(
+                    question = question,
+                    questionNumber = question.id,
+                    totalQuestions = allQuestions.size,
+                    onAnswerSelected = { answerIndex ->
+
+                        if (nextQuestionId > allQuestions.size) {
+                            // end quiz, result screen
+                            navController.navigate("results/metal") {
+                                popUpTo("menu") // clean history
+                            }
+                        } else {
+                            navController.navigate("quiz/$nextQuestionId")
+                        }
+                    }
+                )
+            }
+        }
+
+        // new route
+        composable("results/{resultId}") { backStackEntry ->
+
+            val resultId = backStackEntry.arguments?.getString("resultId") ?: "metal"
+
+            // finding data
+            val result = allResults.getValue(resultId)
+
+            ResultScreen(
+                result = result,
+                onRedoQuiz = {
+                    // return to first question
+                    navController.navigate("menu") {
+                        popUpTo("menu") // clean history
+                    }
+                }
+            )
         }
     }
 }

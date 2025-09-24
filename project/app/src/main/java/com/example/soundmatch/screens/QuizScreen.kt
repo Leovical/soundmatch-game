@@ -21,19 +21,19 @@ import com.example.soundmatch.DarkBrownColor
 import com.example.soundmatch.OrangeColor
 import com.example.soundmatch.R
 import com.example.soundmatch.ui.theme.PressStart2PFamily
+import com.example.soundmatch.data.Question
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.soundmatch.data.allQuestions
+import com.example.soundmatch.ui.theme.SoundMatchTheme
 
 // main composable
 @Composable
-fun QuizScreen() {
-    // data example, after ML
-    val questionText = "Qual destes sons te atrai mais em uma música?"
-    val answers = listOf(
-        "Guitarras elétricas com distorção e uma bateria poderosa.",
-        "Sintetizadores, batidas eletrônicas e sons graves (profundos).",
-        "A virtuosidade de instrumentos acústicos como piano, violino ou saxofone.",
-        "A voz humana clara e em primeiro plano, contando uma história."
-    )
-
+fun QuizScreen(
+    question: Question,
+    questionNumber: Int,
+    totalQuestions: Int,
+    onAnswerSelected: (answerIndex: Int) -> Unit
+) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.background_texture),
@@ -48,46 +48,46 @@ fun QuizScreen() {
                 .padding(horizontal = 24.dp, vertical = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             // question title
             Box {
                 Text(
-                    text = questionText,
+                    text = question.questionText,
                     fontFamily = PressStart2PFamily,
-                    fontSize = 30.sp,
+                    fontSize = 26.sp,
                     lineHeight = 40.sp,
                     textAlign = TextAlign.Center,
                     color = DarkBrownColor,
                     modifier = Modifier.offset(x = 3.dp, y = 3.dp)
                 )
                 Text(
-                    text = questionText,
+                    text = question.questionText,
                     fontFamily = PressStart2PFamily,
-                    fontSize = 30.sp,
+                    fontSize = 26.sp,
                     lineHeight = 40.sp,
                     textAlign = TextAlign.Center,
                     color = OrangeColor
                 )
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             // question indicator
             Text(
-                text = "--- PERGUNTA 1 DE 10 ---",
+                text = "--- PERGUNTA $questionNumber DE $totalQuestions ---",
                 style = MaterialTheme.typography.bodyLarge,
                 color = DarkBrownColor,
                 fontWeight = FontWeight.Bold
             )
 
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(30.dp))
 
             // gennerate buttons and the answers
-            answers.forEachIndexed { index, answerText ->
+            question.answers.forEachIndexed { index, answerText ->
                 val option = 'A' + index // 'A', 'B', 'C', ...
-                AnswerButton(option = option, text = answerText, onClick = { /* Lógica da resposta */ })
-                Spacer(modifier = Modifier.height(20.dp))
+                AnswerButton(option = option, text = answerText, onClick = { onAnswerSelected(index) })
+                Spacer(modifier = Modifier.height(10.dp))
             }
         }
     }
@@ -102,7 +102,7 @@ fun AnswerButton(option: Char, text: String, onClick: () -> Unit) {
         colors = ButtonDefaults.buttonColors(containerColor = OrangeColor),
         modifier = Modifier
             .fillMaxWidth()
-            .defaultMinSize(minHeight = 80.dp),
+            .defaultMinSize(minHeight = 110.dp),
         border = BorderStroke(4.dp, DarkBrownColor)
     ) {
         Row(
@@ -123,9 +123,23 @@ fun AnswerButton(option: Char, text: String, onClick: () -> Unit) {
                 text = text,
                 style = MaterialTheme.typography.bodyLarge,
                 color = DarkBrownColor,
-                fontSize = 18.sp,
-                lineHeight = 22.sp,
+                fontSize = 16.sp,
+                lineHeight = 20.sp,
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun QuizScreenPreview() {
+    SoundMatchTheme {
+        val firstQuestion = allQuestions.first()
+        QuizScreen(
+            question = firstQuestion,
+            questionNumber = 1,
+            totalQuestions = allQuestions.size,
+            onAnswerSelected = {}
+        )
     }
 }

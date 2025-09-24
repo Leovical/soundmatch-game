@@ -33,7 +33,8 @@ import com.example.soundmatch.ui.theme.PressStart2PFamily
 import com.example.soundmatch.ui.theme.SoundMatchTheme
 
 @Composable
-fun MenuScreen(onNavigateToQuiz: () -> Unit) {
+fun MenuScreen(onNavigateToQuiz: () -> Unit,
+               onNavigateToCredits: () -> Unit) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.background_texture),
@@ -106,7 +107,7 @@ fun MenuScreen(onNavigateToQuiz: () -> Unit) {
             // BOTÕES
             MenuButton(text = "INICIAR QUIZ", onClick = onNavigateToQuiz)
             Spacer(modifier = Modifier.height(24.dp))
-            MenuButton(text = "CRÉDITOS", onClick = { /* ACTION */ })
+            MenuButton(text = "CRÉDITOS", onClick = onNavigateToCredits)
             Spacer(modifier = Modifier.height(24.dp))
             MenuButton(text = "CONFIGURAÇÕES", onClick = { /* ACTION */ })
 
@@ -177,10 +178,3 @@ fun MenuButton(text: String, onClick: () -> Unit) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    SoundMatchTheme {
-        MenuScreen(onNavigateToQuiz = {})
-    }
-}
