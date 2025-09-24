@@ -18,17 +18,24 @@ object ApiService {
         }
     }
 
-    private const val BASE_URL = "http://10.0.2.2:5000/predict"
+    // --- CORREÇÃO AQUI ---
+    // A URL base deve ser APENAS o endereço do servidor, sem o caminho.
+    private const val BASE_URL = "http://192.168.100.11:5000"
 
     suspend fun getPrediction(answers: Map<String, String>): QuizResponse? {
         return try {
             val requestBody = QuizRequest(respostas = answers)
-            val response: QuizResponse = client.post(BASE_URL) {
+
+            // --- E A CORREÇÃO É APLICADA AQUI ---
+            // Concatenamos a URL base com o caminho /predict na chamada do post.
+            val response: QuizResponse = client.post("$BASE_URL/predict") {
                 contentType(ContentType.Application.Json)
                 setBody(requestBody)
             }.body()
+
             response
         } catch (e: Exception) {
+            // Este bloco deixará de ser executado após a correção
             e.printStackTrace()
             null
         }

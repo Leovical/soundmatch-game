@@ -35,7 +35,7 @@ val allResults = mapOf(
     ),
     "mpb" to ResultData(
         id = "mpb",
-        genreName = "MBP",
+        genreName = "MPB",
         imageResId = R.drawable.mpb,
         description = "Você aprecia músicas que unem poesia, ritmo e identidade cultural.",
         keywords = "VIOLÃO MARCANTE, VOZ EXPRESSIVA E TRADIÇÃO BRASILEIRA."

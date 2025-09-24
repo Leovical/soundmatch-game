@@ -23,6 +23,7 @@ import androidx.navigation.navArgument
 import com.example.soundmatch.api.ApiService
 import com.example.soundmatch.viewmodels.QuizViewModel
 import androidx.compose.runtime.getValue
+import android.util.Log // <-- Adicione esta importação no topo do arquivo
 
 val OrangeColor = Color(0xFFB45329)
 val DarkBrownColor = Color(0xFF2C170B)
@@ -72,6 +73,10 @@ fun AppNavigation() {
             LaunchedEffect(finalAnswers) {
                 finalAnswers?.let { answers ->
                     val result = ApiService.getPrediction(answers)
+
+                    // --- ADICIONE ESTAS LINHAS PARA VER A RESPOSTA ---
+                    Log.d("API_RESPONSE", "Resultado recebido da API: $result")
+
                     if (result != null) {
                         val genre = result.genero_previsto.lowercase()
                         navController.navigate("results/$genre") { popUpTo("menu") }
