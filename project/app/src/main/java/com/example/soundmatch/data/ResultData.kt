@@ -42,7 +42,7 @@ val allResults = mapOf(
     ),
     "classica" to ResultData(
         id = "classica",
-        genreName = "CLÁSSICA",
+        genreName = "CLASSICA",
         imageResId = R.drawable.classica,
         description = "Você valoriza a sofisticação e se emociona com a beleza de grandes composições.",
         keywords = "ORQUESTRAS HARMÔNICAS, INSTRUMENTOS ELEGANTES E PROFUNDIDADE EMOCIONAL."

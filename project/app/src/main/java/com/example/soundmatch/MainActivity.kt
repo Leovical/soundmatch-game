@@ -39,8 +39,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// Dentro de MainActivity.kt
-
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
@@ -74,25 +72,22 @@ fun AppNavigation() {
                 finalAnswers?.let { answers ->
                     val result = ApiService.getPrediction(answers)
 
-                    // --- ADICIONE ESTAS LINHAS PARA VER A RESPOSTA ---
                     Log.d("API_RESPONSE", "Resultado recebido da API: $result")
 
                     if (result != null) {
                         val genre = result.genero_previsto.lowercase()
                         navController.navigate("results/$genre") { popUpTo("menu") }
                     } else {
-                        // Lida com erro de rede
                         navController.navigate("results/rock") { popUpTo("menu") }
                     }
                 }
             }
 
-            // Enquanto o quiz não termina, mostramos a pergunta atual
             currentQuestion?.let { question ->
                 QuizScreen(
                     question = question,
                     questionNumber = quizViewModel.getCurrentQuestionNumber(),
-                    totalQuestions = 10, // O quiz sempre terá 10 perguntas
+                    totalQuestions = 10,
                     onAnswerSelected = { answerIndex ->
                         quizViewModel.submitAnswer(question.id, answerIndex)
                     }
@@ -116,7 +111,6 @@ fun AppNavigation() {
                     }
                 )
             } else {
-                // Se o ID for inválido, mostramos um resultado padrão
                 val fallbackResult = allResults.getValue("rock")
                 ResultScreen(
                     result = fallbackResult,

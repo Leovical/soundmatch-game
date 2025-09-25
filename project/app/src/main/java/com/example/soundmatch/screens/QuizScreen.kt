@@ -3,7 +3,9 @@ package com.example.soundmatch.screens
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -35,6 +37,9 @@ fun QuizScreen(
     onAnswerSelected: (answerIndex: Int) -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
+
+        val scrollState = rememberScrollState()
+
         Image(
             painter = painterResource(id = R.drawable.background_texture),
             contentDescription = "Background",
@@ -45,8 +50,10 @@ fun QuizScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(scrollState)
                 .padding(horizontal = 24.dp, vertical = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+
         ) {
             Spacer(modifier = Modifier.height(20.dp))
 
