@@ -147,7 +147,7 @@ val allQuestions = listOf(
         answers = listOf(
             "Uma produção moderna, com elementos eletrônicos e uma batida dançante.",
             "O som do violão, da sanfona e do piano, de forma mais acústica e emotiva.",
-            "O som do violão, da sanfona e do piano, de forma mais acústica e emotiva.",
+            "A riqueza de instrumentos brasileiros, como violão de nylon, percussão e até metais",
             "Uma banda completa, com guitarras, teclado e bateria, em formato de \"hino\"."
         ),
         isBaseQuestion = false

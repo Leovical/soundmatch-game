@@ -35,14 +35,14 @@ val allResults = mapOf(
     ),
     "mpb" to ResultData(
         id = "mpb",
-        genreName = "MBP",
+        genreName = "MPB",
         imageResId = R.drawable.mpb,
         description = "Você aprecia músicas que unem poesia, ritmo e identidade cultural.",
         keywords = "VIOLÃO MARCANTE, VOZ EXPRESSIVA E TRADIÇÃO BRASILEIRA."
     ),
     "classica" to ResultData(
         id = "classica",
-        genreName = "CLÁSSICA",
+        genreName = "CLASSICA",
         imageResId = R.drawable.classica,
         description = "Você valoriza a sofisticação e se emociona com a beleza de grandes composições.",
         keywords = "ORQUESTRAS HARMÔNICAS, INSTRUMENTOS ELEGANTES E PROFUNDIDADE EMOCIONAL."

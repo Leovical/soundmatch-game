@@ -18,7 +18,7 @@ object ApiService {
         }
     }
 
-    private const val BASE_URL = "http://192.168.1.28:5000/predict"
+    private const val BASE_URL = "http://10.0.2.2:5000/predict"
 
     suspend fun getPrediction(answers: Map<String, String>): QuizResponse? {
         return try {

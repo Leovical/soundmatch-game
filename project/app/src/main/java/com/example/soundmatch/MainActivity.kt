@@ -23,6 +23,7 @@ import androidx.navigation.navArgument
 import com.example.soundmatch.api.ApiService
 import com.example.soundmatch.viewmodels.QuizViewModel
 import androidx.compose.runtime.getValue
+import android.util.Log // <-- Adicione esta importação no topo do arquivo
 
 val OrangeColor = Color(0xFFB45329)
 val DarkBrownColor = Color(0xFF2C170B)
@@ -37,8 +38,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-// Dentro de MainActivity.kt
 
 @Composable
 fun AppNavigation() {
@@ -72,22 +71,23 @@ fun AppNavigation() {
             LaunchedEffect(finalAnswers) {
                 finalAnswers?.let { answers ->
                     val result = ApiService.getPrediction(answers)
+
+                    Log.d("API_RESPONSE", "Resultado recebido da API: $result")
+
                     if (result != null) {
                         val genre = result.genero_previsto.lowercase()
                         navController.navigate("results/$genre") { popUpTo("menu") }
                     } else {
-                        // Lida com erro de rede
                         navController.navigate("results/rock") { popUpTo("menu") }
                     }
                 }
             }
 
-            // Enquanto o quiz não termina, mostramos a pergunta atual
             currentQuestion?.let { question ->
                 QuizScreen(
                     question = question,
                     questionNumber = quizViewModel.getCurrentQuestionNumber(),
-                    totalQuestions = 10, // O quiz sempre terá 10 perguntas
+                    totalQuestions = 10,
                     onAnswerSelected = { answerIndex ->
                         quizViewModel.submitAnswer(question.id, answerIndex)
                     }
@@ -111,7 +111,6 @@ fun AppNavigation() {
                     }
                 )
             } else {
-                // Se o ID for inválido, mostramos um resultado padrão
                 val fallbackResult = allResults.getValue("rock")
                 ResultScreen(
                     result = fallbackResult,
